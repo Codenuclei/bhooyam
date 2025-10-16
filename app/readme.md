@@ -1,0 +1,1 @@
+This file contains the instructions to develop the Application version on or before of october 27.
