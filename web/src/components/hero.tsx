@@ -28,7 +28,7 @@ export default function Hero() {
               width={520}
               height={520}
               alt="Bhooyam product"
-              className="w-full h-full object-cover mix-blend-overlay"
+              className="w-full h-full object-cover"
             />
             <div
               aria-hidden
