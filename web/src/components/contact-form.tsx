@@ -42,7 +42,7 @@ export default function ContactForm() {
           id="cf-name"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="w-full rounded-xl border border-[#2e4e3f] bg-[#181f23] text-white px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 placeholder:text-gray-500 shadow-sm"
+          className="w-full rounded-xl border border-[#2e4e3f] bg-[#ffffff] text-white px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 placeholder:text-gray-500 shadow-sm"
           placeholder="Your name"
         />
       </div>
@@ -55,7 +55,7 @@ export default function ContactForm() {
           id="cf-email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="w-full rounded-xl border border-[#2e4e3f] bg-[#181f23] text-white px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 placeholder:text-gray-500 shadow-sm"
+          className="w-full rounded-xl border border-[#2e4e3f] bg-[#ffffff] text-white px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 placeholder:text-gray-500 shadow-sm"
           placeholder="you@example.com"
         />
       </div>
@@ -69,7 +69,7 @@ export default function ContactForm() {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           rows={6}
-          className="w-full rounded-xl border border-[#2e4e3f] bg-[#181f23] text-white px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 placeholder:text-gray-500 shadow-sm resize-none"
+          className="w-full rounded-xl border border-[#2e4e3f] bg-[#ffffff] text-white px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 placeholder:text-gray-500 shadow-sm resize-none"
           placeholder="Tell us about your project or question"
         />
       </div>

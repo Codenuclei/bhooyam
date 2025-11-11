@@ -65,22 +65,22 @@ if (typeof document !== "undefined") {
 const products = [
   {
     id: "bhooyam-pro-system",
-    name: "Bhooyam Pro System",
+    name: "Ankuran Ārambha",
     description:
-      "Professional hydroponic system with AI-powered optimization for maximum yield and efficiency. Perfect for commercial growing operations.",
-    price: "$1,299",
-    originalPrice: "$1,599",
+      "The foundation of our system, Ankuran Ārambh continuously monitors environmental parameters like temperature, humidity, and light to create the ideal growth conditions. It serves as the first step toward intelligent, data-driven hydroponic cultivation.",
+    price: "₹8,000",
+    originalPrice: "₹10,000",
     images: [
-      "/images/bhooyam-pro.jpg",
-      "/images/bhooyam-pro-side.jpg",
-      "/images/bhooyam-pro-detail.jpg",
+      "/WhatsApp Image 2025-11-07 at 21.58.23_755d8d4d.jpg",
+      "/WhatsApp Image 2025-11-07 at 21.58.23_d5573056.jpg",
+      "/WhatsApp Image 2025-11-07 at 21.58.24_4427d2e9.jpg",
     ],
     rating: 4.9,
     reviews: 247,
     features: [
-      "300 plant capacity",
-      "AI optimization",
-      "Mobile app control",
+      "100 plant capacity",
+      "Environmental Monitoring",
+      "Smart control",
       "Modular design",
     ],
     badges: ["Best Seller", "AI Powered"],
@@ -95,29 +95,29 @@ const products = [
     },
     etiquetteFeatures: {
       warranty: "5-year comprehensive",
-      shipping: "Free 2-day delivery",
-      certification: "ISO 9001 certified",
+      shipping: "",
+      certification: "",
       support: "24/7 expert support",
     },
   },
   {
     id: "bhooyam-home-garden",
-    name: "Bhooyam Home Garden",
+    name: "Ankuran Vriddhi",
     description:
-      "Compact home hydroponic system designed for families. Grow fresh vegetables and herbs year-round with minimal maintenance.",
-    price: "$499",
-    originalPrice: "$599",
+      "Building upon the basics, Ankuran Vṛddhi adds smart sensing for pH, TDS, and air quality to ensure optimal nutrient and environmental balance. It features semi-automatic alerts that guide users in maintaining perfect conditions for plant growth.",
+    price: "₹15,000",
+    originalPrice: "₹18,000",
     images: [
-      "/images/home-garden.jpg",
-      "/images/home-garden-kitchen.jpg",
-      "/images/home-garden-plants.jpg",
+      "/WhatsApp Image 2025-11-07 at 21.58.24_d5ea4a1e.jpg",
+      "/WhatsApp Image 2025-11-07 at 21.58.25_8a39d759.jpg",
+      "/WhatsApp Image 2025-11-07 at 21.58.25_a9071771.jpg",
     ],
     rating: 4.7,
     reviews: 183,
     features: [
-      "36 plant capacity",
-      "Quiet operation",
-      "Energy efficient",
+      "100 plant capacity",
+      "Air Quality Awareness",
+      "Semi-Automatic (Alerts)",
       "Easy setup",
     ],
     badges: ["Home Use", "Quiet"],
@@ -131,31 +131,31 @@ const products = [
       energyEfficiency: 90,
     },
     etiquetteFeatures: {
-      warranty: "3-year warranty",
-      shipping: "Free standard delivery",
-      certification: "Energy Star rated",
-      support: "Phone & chat support",
+      warranty: "6-year warranty",
+      shipping: "",
+      certification: "",
+      support: "24/7 expert support",
     },
   },
   {
     id: "bhooyam-farm-unit",
-    name: "Bhooyam Farm Unit",
+    name: "Ankuran Pragya",
     description:
-      "Industrial-grade hydroponic system for large-scale farming operations. Expandable design with commercial-grade components.",
-    price: "$2,499",
-    originalPrice: "$2,899",
+      "The most advanced stage, Ankuran Pragya integrates AI-driven image and sensor fusion for precise plant health detection and nutrient control. It fully automates the hydroponic process through intelligent dosing and real-time environmental adjustments.",
+    price: "₹20,000",
+    originalPrice: "₹22,000",
     images: [
-      "/images/farm-unit.jpg",
-      "/images/farm-unit-scale.jpg",
-      "/images/farm-unit-harvest.jpg",
+      "/WhatsApp Image 2025-11-07 at 21.58.25_d97da499.jpg",
+      "/WhatsApp Image 2025-11-07 at 21.58.26_89af52e5.jpg",
+      "/WhatsApp Image 2025-11-07 at 21.58.26_edce2dbc.jpg",
     ],
     rating: 4.8,
     reviews: 95,
     features: [
-      "600 plant capacity",
+      "100 plant capacity",
       "Commercial grade",
       "Expandable",
-      "24/7 support",
+      "Dedicated account manager",
     ],
     badges: ["Commercial", "Expandable"],
     inStock: true,
@@ -169,22 +169,22 @@ const products = [
     },
     etiquetteFeatures: {
       warranty: "7-year commercial warranty",
-      shipping: "White-glove installation",
-      certification: "Commercial grade certified",
+      shipping: "",
+      certification: "",
       support: "Dedicated account manager",
     },
   },
 ];
 
-const stats = [
-  { icon: ChartBarIcon, value: "+500%", label: "Average yield increase" },
-  { icon: LeafIcon, value: "-90%", label: "Water usage vs soil farms" },
-  {
-    icon: DeviceTabletIcon,
-    value: "+80%",
-    label: "Lighting efficiency with LEDs",
-  },
-];
+// const stats = [
+// { icon: ChartBarIcon, value: "+500%", label: "Average yield increase" },
+// { icon: LeafIcon, value: "-90%", label: "Water usage vs soil farms" },
+// {
+//   icon: DeviceTabletIcon,
+//   value: "+80%",
+//   label: "Lighting efficiency with LEDs",
+// },
+// ];
 
 export default function Home() {
   const [activeCard, setActiveCard] = useState<string | null>(null);
@@ -192,11 +192,10 @@ export default function Home() {
   return (
     <>
       {/* Enhanced Navigation */}
-      <header className="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 shadow-sm">
-        <Navbar />
-      </header>
+      <Navbar />
 
       <main className="pt-16">
+        {/* 1. Refined Hero Section with Perfect Mint Glassmorphism */}
         {/* 1. Refined Hero Section with Perfect Mint Glassmorphism */}
         <section className="relative bg-gradient-to-br from-mint-50 via-green-50 to-emerald-50 py-24 lg:py-32 overflow-hidden">
           <div className="absolute inset-0 bg-grid-pattern opacity-3"></div>
@@ -222,7 +221,7 @@ export default function Home() {
                 </h1>
                 <p className="text-xl text-gray-600 max-w-2xl mx-auto lg:mx-0 mb-8 leading-relaxed">
                   Advanced hydroponic systems with AI optimization helping you
-                  grow fresh produce year-round using 90% less water and zero
+                  grow fresh produce year-round using 50% less water and zero
                   pesticides. The future of sustainable agriculture is here.
                 </p>
 
@@ -273,7 +272,7 @@ export default function Home() {
                   {/* Main Product Image with Mint Glassmorphism */}
                   <div className="bg-white/60 backdrop-blur-md rounded-2xl shadow-2xl p-8 transform rotate-2 hover:rotate-0 transition-transform duration-500 border border-mint-200/40">
                     <img
-                      src="/images/hero-system.jpg"
+                      src="/WhatsApp Image 2025-11-07 at 21.58.23_1e9d59d5.jpg"
                       alt="Bhooyam Hydroponic System"
                       className="w-full h-64 lg:h-80 object-cover rounded-xl"
                     />
@@ -307,7 +306,52 @@ export default function Home() {
             </div>
           </div>
         </section>
+        {/* 3. Enhanced Product Showcase with Mint Glassmorphism */}
+        <section className="py-20 bg-gradient-to-br from-mint-50 to-green-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+                Ankuran - Intelligent Hydroponics Automation and Monitoring
+                System
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                Ankuran is a three-stage progressive hydroponics automation and
+                monitoring system developed under the Bhooyam initiative. Each
+                stage advances the system’s intelligence — from basic
+                environmental monitoring to full AI-driven nutrient management
+                and image-based growth analysis.
+              </p>
+            </div>
 
+            {/* Enhanced Product Cards Grid */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+              {products.map((product, index) => (
+                <EnhancedProductCard
+                  key={product.id}
+                
+                  product={product}
+                  index={index}
+                  isActive={activeCard === product.id}
+                  onActivate={() =>
+                    setActiveCard(activeCard === product.id ? null : product.id)
+                  }
+                />
+              ))}
+            </div>
+
+            {/* Call to Action for Product Details with Mint Theme */}
+            <div className="text-center mt-16">
+              <div className="inline-flex flex-col sm:flex-row gap-4">
+                <button className="bg-gradient-to-r from-mint-400 to-green-400 text-white font-semibold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                  View All Products
+                </button>
+                <button className="border-2 border-mint-400 text-mint-600 font-semibold py-4 px-8 rounded-xl hover:bg-mint-50 transition-all duration-300">
+                  Compare Systems
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
         {/* 2. Enhanced Features Section with Mint Glassmorphism */}
         <section className="py-20 bg-gradient-to-b from-white to-mint-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -401,54 +445,11 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 3. Enhanced Product Showcase with Mint Glassmorphism */}
-        <section className="py-20 bg-gradient-to-br from-mint-50 to-green-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-                Our Revolutionary Systems
-              </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                Discover the perfect hydroponic solution for your space and
-                needs. Each system is engineered for maximum efficiency,
-                sustainability, and yield.
-              </p>
-            </div>
-
-            {/* Enhanced Product Cards Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
-              {products.map((product, index) => (
-                <EnhancedProductCard
-                  key={product.id}
-                  product={product}
-                  index={index}
-                  isActive={activeCard === product.id}
-                  onActivate={() =>
-                    setActiveCard(activeCard === product.id ? null : product.id)
-                  }
-                />
-              ))}
-            </div>
-
-            {/* Call to Action for Product Details with Mint Theme */}
-            <div className="text-center mt-16">
-              <div className="inline-flex flex-col sm:flex-row gap-4">
-                <button className="bg-gradient-to-r from-mint-400 to-green-400 text-white font-semibold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-                  View All Products
-                </button>
-                <button className="border-2 border-mint-400 text-mint-600 font-semibold py-4 px-8 rounded-xl hover:bg-mint-50 transition-all duration-300">
-                  Compare Systems
-                </button>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* 4. Advanced Stats Section with Mint Glassmorphism */}
-        <section className="py-20 bg-white">
+        {/* <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {stats.map((stat, index) => (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8"> */}
+        {/* {stats.map((stat, index) => (
                 <div
                   key={index}
                   className="text-center p-8 rounded-2xl bg-gradient-to-br from-mint-50 to-green-50 border border-mint-200/40 backdrop-blur-sm"
@@ -461,10 +462,10 @@ export default function Home() {
                   </div>
                   <p className="text-gray-600 text-lg">{stat.label}</p>
                 </div>
-              ))}
-            </div>
+              ))} */}
+        {/* </div>
           </div>
-        </section>
+        </section> */}
 
         {/* 5. Premium CTA Section with Refined Color Palette */}
 

@@ -32,12 +32,12 @@ export default function ContactPage() {
             <div>
               <h3 className="font-semibold">Support</h3>
               <p className="mt-1">support@bhooyam.in</p>
-              <p className="mt-1">Phone: +91-7355499429</p>
+              <p className="mt-1">Phone: +91-9463252156</p>
             </div>
 
             <div>
               <h3 className="font-semibold">Stay in touch</h3>
-              <p className="mt-1">
+              {/* <p className="mt-1">
                 Join our waitlist for product updates and launches.
               </p>
               <Link
@@ -45,7 +45,7 @@ export default function ContactPage() {
                 className="inline-block mt-3 px-4 py-2 rounded-full bg-yellow-100 text-sm font-semibold"
               >
                 Join Waitlist
-              </Link>
+              </Link> */}
             </div>
           </aside>
         </main>

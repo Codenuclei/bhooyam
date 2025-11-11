@@ -65,21 +65,21 @@ export default function Hero() {
 
           <div className="flex flex-wrap gap-3 mt-6">
             <Link
-              href="#solutions"
+              href="/products"
               aria-label="Explore Our Solutions"
               className="px-5 py-2 rounded-full text-gray-600 bg-gradient-to-bl from-emerald-100 via-neutral-100 to-lime-100 shadow-md shadow-[#F87171]/20 hover:shadow-[0_12px_40px_rgba(100,116,139,0.12)] hover:scale-[1.02] transition-transform duration-150"
             >
               Explore Our Solutions
             </Link>
-            <Link
+            {/* <Link
               href="#waitlist"
               aria-label="Join Waitlist"
               className="px-6 py-2 rounded-full text-slate-700/80 bg-gradient-to-br from-amber-200/50 via-lime-100/10 to-cyan-100/90 border border-slate-200/40 backdrop-blur-sm shadow-md shadow-cyan-700/20 ring-1 ring-slate-100/30 transition-transform duration-150 hover:scale-[1.02] hover:shadow-[0_12px_40px_rgba(100,116,139,0.12)] focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-slate-300/40 flex items-center justify-center"
             >
               Join Waitlist
-            </Link>
+            </Link> */}
             <Link
-              href="#waitlist"
+              href="/contact"
               aria-label="Join Waitlist"
               className="px-6 py-2 rounded-full text-neutral-800/70 bg-gradient-to-br from-yellow-400/30 via-slate-50 to-green-300/40 border border-slate-200/40 backdrop-blur-sm shadow-md ring-1 ring-red-200/30 transition-transform duration-150 hover:scale-[1.02] hover:shadow-[0_12px_40px_rgba(239,68,68,0.18)] focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-red-300/40 flex items-center justify-center"
             >

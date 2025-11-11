@@ -41,7 +41,7 @@ const teamMembers = [
 ];
 
 const features = [
-  { id: "water", icon: Droplets, text: "90% less water usage than soil farming", color: "emerald" },
+  { id: "water", icon: Droplets, text: "50% less water usage than soil farming", color: "emerald" },
   { id: "pesticides", icon: Leaf, text: "Zero pesticides, pure nutrition", color: "green" },
   { id: "automation", icon: Bot, text: "Autonomous climate and nutrient control", color: "cyan" },
   { id: "accessibility", icon: Zap, text: "Plug-and-play for homes, schools, and businesses", color: "emerald" },
@@ -102,7 +102,7 @@ export default function AboutPage() {
           <div className="relative">
             <div className="aspect-video rounded-xl overflow-hidden border border-gray-200 shadow-sm">
               <Image
-                src="https://images.unsplash.com/photo-1606788075761-1b4ebf7c5b9b?auto=format&fit=crop&w=1200&q=80"
+                src="/WhatsApp Image 2025-11-07 at 21.58.24_d5ea4a1e.jpg"
                 alt="Bhooyam founders working on hydroponic system"
                 width={600}
                 height={400}
@@ -113,10 +113,11 @@ export default function AboutPage() {
           <div>
             <h2 className="text-2xl font-bold text-gray-900 mb-3">Growing a Better Future</h2>
             <p className="text-gray-600 mb-3">
-              Bhooyam was born from a simple question: Why can't growing food be as easy as pressing a button? Our founders combined expertise in AI, engineering, and agriculture to make organic produce effortless.
+            Bhooyam began with a simple question: Can technology make growing food effortless and sustainable?
+We’re a team of engineers, and innovators building AI-powered hydroponic systems that make smart, soil-free farming accessible to everyone with intelligent automation that takes care of the hard work.
             </p>
             <p className="text-gray-600 mb-3">
-              In 2020, we started with a small prototype in a garage. Today, our systems are used in over 500 homes, schools, and restaurants across the country, helping people grow fresh produce year-round with minimal effort.
+            Our journey began with research and rapid prototyping — and today, we’re focused on building technology that brings smart, eco-friendly farming to everyday life.
             </p>
             <p className="text-gray-600">
               We believe that everyone deserves access to fresh, nutritious food, and technology should make this possible - not complicate it.
@@ -135,14 +136,14 @@ export default function AboutPage() {
               <div>
                 <h3 className="text-lg font-semibold text-emerald-700 mb-1">Mission</h3>
                 <p className="text-gray-600">
-                  To enable intelligent, resource-efficient agriculture through automation and innovation, making fresh produce accessible to everyone.
+                Our mission is to integrate cutting-edge technology with traditional farming practices, creating a more efficient and resilient agricultural ecosystem.
                 </p>
               </div>
               
               <div>
                 <h3 className="text-lg font-semibold text-emerald-700 mb-1">Vision</h3>
                 <p className="text-gray-600">
-                  A world where anyone can grow healthy, sustainable produce anywhere, with minimal effort and maximum impact.
+                We envision a future where smart farming solutions are accessible to farms of all sizes, contributing to a more sustainable and food-secure world.
                 </p>
               </div>
               
@@ -151,7 +152,7 @@ export default function AboutPage() {
                   Founded in 2020
                 </span>
                 <span className="inline-block px-3 py-1 bg-cyan-100 text-cyan-700 rounded-full text-sm font-medium ml-2">
-                  500+ installations
+                  5+ installations
                 </span>
               </div>
             </div>
@@ -159,7 +160,7 @@ export default function AboutPage() {
           <div className="relative">
             <div className="aspect-video rounded-xl overflow-hidden border border-gray-200 shadow-sm">
               <Image
-                src="https://images.unsplash.com/photo-1599058917212-d750089bc07c?auto=format&fit=crop&w=1200&q=80"
+                src="/WhatsApp Image 2025-11-07 at 21.58.26_edce2dbc.jpg"
                 alt="Hydroponic farming system in modern setting"
                 width={600}
                 height={400}

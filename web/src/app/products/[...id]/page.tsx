@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Navbar from "@/components/navbar";
@@ -52,218 +52,317 @@ import {
   FlowerIcon as Flower,
 } from "lucide-react";
 
-const products = [
+type Feature =
+  | string
+  | {
+      title: string;
+      desc?: string;
+      icon?: React.ComponentType<{ className?: string }>;
+    };
+
+const products: Array<{
+  id: string;
+  name: string;
+  category: string;
+  seller: string;
+  description: string;
+  price: number;
+  originalPrice?: number;
+  images: string[];
+  rating: number;
+  reviews: number;
+  features: Feature[];
+  benefits: Array<
+    | string
+    | {
+        title: string;
+        desc?: string;
+        icon?: React.ComponentType<{ className?: string }>;
+      }
+  >;
+  badges: string[];
+  inStock: boolean;
+  isNew: boolean;
+  isBestseller: boolean;
+  metrics: {
+    efficiency: number;
+    yield: number;
+    waterSaving: number;
+    energyEfficiency: number;
+  };
+  etiquetteFeatures: {
+    warranty: string;
+    shipping: string;
+    certification: string;
+    support: string;
+  };
+  roi?: {
+    monthlyProduction: string;
+    monthlyValue: string;
+    paybackPeriod: string;
+    annualSavings: string;
+  };
+  idealFor?: string[];
+  specifications: Array<
+    | string
+    | {
+        label: string;
+        value: string;
+        icon?: React.ComponentType<{ className?: string }>;
+      }
+  >;
+  certifications?: string[];
+  whatInBox?: string[];
+  support?: {
+    setup: string;
+    training: string;
+    maintenance: string;
+    consultation: string;
+  };
+}> = [
   {
-    id: "bhooyam-pro",
-    name: "Bhooyam Pro",
-    tagline: "AI-Powered Commercial Growing Solution",
+    id: "bhooyam-pro-system",
+    name: "Ankuran Ārambha",
+    category: "Commercial",
+    seller: "Bhooyam",
     description:
-      "Professional autonomous hydroponic system for commercial use. Includes AI-powered climate control, mobile app monitoring, and commercial-grade construction.",
-    shortDescription:
-      "Revolutionary AI-powered hydroponic system that maximizes yield while minimizing water usage and maintenance.",
-    price: 1299,
-    originalPrice: 1599,
-    savings: 300,
-    financingOptions: "Starting at $54/month",
+      "The foundation of our system, Ankuran Ārambh continuously monitors environmental parameters like temperature, humidity, and light to create the ideal growth conditions. It serves as the first step toward intelligent, data-driven hydroponic cultivation.",
+    price: 8000,
+    originalPrice: 10000,
     images: [
-      "/WhatsApp Image 2025-11-07 at 21.58.23_1e9d59d5.jpg",
-      "/hero.1png",
-      "/WhatsApp Image 2025-11-07 at 21.58.23_1e9d59d5.jpg",
-      "/hero.1png",
+      "/WhatsApp Image 2025-11-07 at 21.58.23_755d8d4d.jpg",
+      "/WhatsApp Image 2025-11-07 at 21.58.23_d5573056.jpg",
+      "/WhatsApp Image 2025-11-07 at 21.58.24_4427d2e9.jpg",
     ],
-    inStock: true,
-    stockLevel: 12,
     rating: 4.9,
-    reviews: 124,
-    category: "Commercial Systems",
-    seller: "Bhooyam Technologies",
-    warranty: "3 Years Comprehensive",
-    roiPeriod: "6-8 months",
-    idealFor: [
-      "Restaurants",
-      "Grocery Stores",
-      "Commercial Farms",
-      "Research Facilities",
-    ],
-    certifications: [
-      "USDA Organic",
-      "FDA Approved",
-      "Energy Star",
-      "CE Certified",
-    ],
+    reviews: 247,
     features: [
-      {
-        icon: Sprout,
-        title: "48 Plant Capacity",
-        desc: "Massive growing space for commercial operations",
-      },
-      {
-        icon: CircuitBoard,
-        title: "AI Climate Control",
-        desc: "Machine learning optimizes growing conditions",
-      },
-      {
-        icon: Smartphone,
-        title: "Mobile App Control",
-        desc: "Monitor and control from anywhere",
-      },
-      {
-        icon: Building2,
-        title: "Commercial Grade",
-        desc: "Built for continuous operation",
-      },
-      {
-        icon: Droplet,
-        title: "Auto Nutrient Dosing",
-        desc: "Precision feeding system",
-      },
-      {
-        icon: Wifi,
-        title: "IoT Integration",
-        desc: "Connect with smart building systems",
-      },
-    ],
-    specifications: [
-      { label: "Dimensions", value: '48" x 24" x 36"', icon: Package },
-      { label: "Weight", value: "45 lbs", icon: Package },
-      { label: "Power", value: "120V AC, 300W", icon: Zap },
-      { label: "Water Capacity", value: "20 gallons", icon: Droplet },
-      {
-        label: "Materials",
-        value: "Food-grade ABS, stainless steel",
-        icon: Shield,
-      },
-      { label: "Connectivity", value: "WiFi, Bluetooth, Ethernet", icon: Wifi },
+      "100 plant capacity",
+      "Environmental Monitoring",
+      "Smart control",
+      "Modular design",
     ],
     benefits: [
       {
-        icon: Droplet,
-        title: "90% Less Water",
-        desc: "Compared to traditional farming",
-      },
-      {
+        title: "High Efficiency",
+        desc: "Up to 95% resource utilization",
         icon: TrendingUp,
-        title: "3x Faster Growth",
-        desc: "Optimized nutrient delivery",
       },
       {
-        icon: Calendar,
-        title: "Year-Round Growing",
-        desc: "Climate controlled environment",
+        title: "Water Saving",
+        desc: "90% less water than soil",
+        icon: Droplet,
       },
-      { icon: Leaf, title: "Zero Pesticides", desc: "Clean, safe produce" },
+      {
+        title: "Energy Efficient",
+        desc: "Low power consumption",
+        icon: Battery,
+      },
+      "Easy Maintenance",
     ],
-    whatInBox: [
-      "Bhooyam Pro Hydroponic System",
-      "AI Control Unit",
-      "Mobile App Access (Lifetime)",
-      "Nutrient Solution Kit",
-      "pH Testing Kit",
-      "Professional Setup Guide",
-      "48 Growing Pods",
-      "LED Light System",
-      "Water Pump & Filtration",
-      "3-Year Warranty",
-    ],
-    roi: {
-      monthlyProduction: "200-300 lbs of produce",
-      monthlyValue: "$800-1200",
-      paybackPeriod: "6-8 months",
-      annualSavings: "$8000+",
-    },
-    support: {
-      setup: "Professional installation available",
-      training: "Comprehensive training program",
-      maintenance: "24/7 remote monitoring",
-      consultation: "Free growing consultation",
-    },
-  },
-  {
-    id: "bhooyam-home",
-    name: "Bhooyam Home",
-    description:
-      "Perfect for families and home growers with smart automation. Features smartphone control, auto nutrient dosing, and energy efficient design.",
-    price: 699,
-    originalPrice: 899,
-    images: [
-      "/hero.1png",
-      "/WhatsApp Image 2025-11-07 at 21.58.23_1e9d59d5.jpg",
-      "/hero.1png",
-      "/WhatsApp Image 2025-11-07 at 21.58.23_1e9d59d5.jpg",
-    ],
+    badges: ["Best Seller", "AI Powered"],
     inStock: true,
-    rating: 4.8,
-    reviews: 42,
-    category: "Home Systems",
-    seller: "Bhooyam Technologies",
-    features: [
-      "24 plant capacity",
-      "Smartphone control",
-      "Auto nutrient dosing",
-      "Energy efficient design",
-      "LED grow lights included",
-      "Easy setup in 15 minutes",
-    ],
+    isNew: false,
+    isBestseller: true,
+    metrics: {
+      efficiency: 95,
+      yield: 85,
+      waterSaving: 90,
+      energyEfficiency: 88,
+    },
+    etiquetteFeatures: {
+      warranty: "5-year comprehensive",
+      shipping: "Free shipping",
+      certification: "UL Listed, FDA Approved",
+      support: "24/7 expert support",
+    },
+    roi: {
+      monthlyProduction: "40kg",
+      monthlyValue: "₹12,000",
+      paybackPeriod: "8 months",
+      annualSavings: "₹60,000",
+    },
+    idealFor: ["Restaurants", "Commercial Farms", "Hotels", "Supermarkets"],
     specifications: [
-      'Dimensions: 36" x 18" x 28"',
-      "Weight: 28 lbs",
-      "Power: 120V AC, 180W",
-      "Water tank: 12 gallons",
-      "Materials: Food-grade ABS, BPA-free plastic",
-      "App compatibility: iOS and Android",
+      { label: "Plant Capacity", value: "100", icon: Sprout },
+      { label: "Power Consumption", value: "120W", icon: Battery },
+      { label: "Dimensions", value: "120x60x180cm", icon: Settings },
+      { label: "Connectivity", value: "WiFi", icon: Wifi },
+      "Material: Food-grade ABS",
+      "Water Tank: 60L",
     ],
-    benefits: [
-      "Perfect for kitchen herbs and vegetables",
-      "Silent operation",
-      "Low maintenance required",
-      "Fits most countertops",
+    certifications: ["UL Listed", "FDA Approved", "Energy Star", "IP65 Rated"],
+    whatInBox: [
+      "Main Hydroponic Unit",
+      "Nutrient Starter Pack",
+      "User Manual",
+      "Warranty Card",
+      "Power Adapter",
     ],
+    support: {
+      setup: "Professional installation included.",
+      training: "Online and onsite training available.",
+      maintenance: "Annual maintenance contract.",
+      consultation: "Free initial consultation.",
+    },
   },
   {
-    id: "bhooyam-mini",
-    name: "Bhooyam Mini",
+    id: "bhooyam-home-garden",
+    name: "Ankuran Vriddhi",
+    category: "Home",
+    seller: "Bhooyam",
     description:
-      "Compact starter system for apartments and small spaces. Simple setup in 5 minutes, basic app connectivity, perfect for beginners.",
-    price: 349,
-    originalPrice: 449,
+      "Building upon the basics, Ankuran Vṛddhi adds smart sensing for pH, TDS, and air quality to ensure optimal nutrient and environmental balance. It features semi-automatic alerts that guide users in maintaining perfect conditions for plant growth.",
+    price: 15000,
+    originalPrice: 18000,
     images: [
-      "/WhatsApp Image 2025-11-07 at 21.58.23_1e9d59d5.jpg",
-      "/hero.1png",
-      "/WhatsApp Image 2025-11-07 at 21.58.23_1e9d59d5.jpg",
-      "/hero.1png",
+      "/WhatsApp Image 2025-11-07 at 21.58.24_d5ea4a1e.jpg",
+      "/WhatsApp Image 2025-11-07 at 21.58.25_8a39d759.jpg",
+      "/WhatsApp Image 2025-11-07 at 21.58.25_a9071771.jpg",
     ],
-    inStock: false,
     rating: 4.7,
-    reviews: 18,
-    category: "Starter Systems",
-    seller: "Bhooyam Technologies",
+    reviews: 183,
     features: [
-      "12 plant capacity",
-      "Simple setup in 5 minutes",
-      "Basic app connectivity",
-      "Perfect for beginners",
-      "Compact design",
-      "Budget-friendly",
-    ],
-    specifications: [
-      'Dimensions: 24" x 12" x 20"',
-      "Weight: 15 lbs",
-      "Power: 120V AC, 120W",
-      "Water tank: 6 gallons",
-      "Materials: Food-grade plastic, silicone seals",
-      "Setup time: 5 minutes",
+      "100 plant capacity",
+      "Air Quality Awareness",
+      "Semi-Automatic (Alerts)",
+      "Easy setup",
     ],
     benefits: [
-      "Ideal for small apartments",
-      "Great for learning hydroponics",
-      "Low power consumption",
-      "Easy to relocate",
+      { title: "Quiet Operation", desc: "Low noise pumps", icon: Wifi },
+      { title: "Home Friendly", desc: "Compact design", icon: Home },
+      "Easy Setup",
+      "Semi-Automatic Alerts",
     ],
+    badges: ["Home Use", "Quiet"],
+    inStock: true,
+    isNew: true,
+    isBestseller: false,
+    metrics: {
+      efficiency: 82,
+      yield: 75,
+      waterSaving: 85,
+      energyEfficiency: 90,
+    },
+    etiquetteFeatures: {
+      warranty: "6-year warranty",
+      shipping: "Free shipping",
+      certification: "FDA Approved",
+      support: "24/7 expert support",
+    },
+    roi: {
+      monthlyProduction: "25kg",
+      monthlyValue: "₹7,500",
+      paybackPeriod: "12 months",
+      annualSavings: "₹36,000",
+    },
+    idealFor: ["Families", "Urban Homes", "Schools", "Community Centers"],
+    specifications: [
+      { label: "Plant Capacity", value: "100", icon: Sprout },
+      { label: "Power Consumption", value: "80W", icon: Battery },
+      { label: "Dimensions", value: "100x50x150cm", icon: Settings },
+      { label: "Connectivity", value: "WiFi", icon: Wifi },
+      "Material: Food-grade ABS",
+      "Water Tank: 40L",
+    ],
+    certifications: ["FDA Approved", "Energy Star"],
+    whatInBox: [
+      "Main Hydroponic Unit",
+      "Nutrient Starter Pack",
+      "User Manual",
+      "Warranty Card",
+      "Power Adapter",
+    ],
+    support: {
+      setup: "DIY setup guide included.",
+      training: "Online training videos.",
+      maintenance: "Phone support for maintenance.",
+      consultation: "Email consultation available.",
+    },
+  },
+  {
+    id: "bhooyam-farm-unit",
+    name: "Ankuran Pragya",
+    category: "Commercial",
+    seller: "Bhooyam",
+    description:
+      "The most advanced stage, Ankuran Pragya integrates AI-driven image and sensor fusion for precise plant health detection and nutrient control. It fully automates the hydroponic process through intelligent dosing and real-time environmental adjustments.",
+    price: 20000,
+    originalPrice: 22000,
+    images: [
+      "/WhatsApp Image 2025-11-07 at 21.58.25_d97da499.jpg",
+      "/WhatsApp Image 2025-11-07 at 21.58.26_89af52e5.jpg",
+      "/WhatsApp Image 2025-11-07 at 21.58.26_edce2dbc.jpg",
+    ],
+    rating: 4.8,
+    reviews: 95,
+    features: [
+      "100 plant capacity",
+      "Commercial grade",
+      "Expandable",
+      "Dedicated account manager",
+    ],
+    benefits: [
+      {
+        title: "AI Health Detection",
+        desc: "Image & sensor fusion",
+        icon: Camera,
+      },
+      { title: "Full Automation", desc: "Intelligent dosing", icon: Settings },
+      "Expandable Design",
+      "Dedicated Support",
+    ],
+    badges: ["Commercial", "Expandable"],
+    inStock: true,
+    isNew: false,
+    isBestseller: false,
+    metrics: {
+      efficiency: 92,
+      yield: 88,
+      waterSaving: 87,
+      energyEfficiency: 85,
+    },
+    etiquetteFeatures: {
+      warranty: "7-year commercial warranty",
+      shipping: "Free shipping",
+      certification: "UL Listed, Energy Star",
+      support: "Dedicated account manager",
+    },
+    roi: {
+      monthlyProduction: "60kg",
+      monthlyValue: "₹18,000",
+      paybackPeriod: "6 months",
+      annualSavings: "₹90,000",
+    },
+    idealFor: ["Large Farms", "Agri Businesses", "Exporters", "Institutions"],
+    specifications: [
+      { label: "Plant Capacity", value: "100", icon: Sprout },
+      { label: "Power Consumption", value: "150W", icon: Battery },
+      { label: "Dimensions", value: "140x70x200cm", icon: Settings },
+      { label: "Connectivity", value: "WiFi + Cellular", icon: Wifi },
+      "Material: Food-grade ABS",
+      "Water Tank: 80L",
+    ],
+    certifications: ["UL Listed", "Energy Star", "IP65 Rated"],
+    whatInBox: [
+      "Main Hydroponic Unit",
+      "Nutrient Starter Pack",
+      "User Manual",
+      "Warranty Card",
+      "Power Adapter",
+      "Account Manager Contact",
+    ],
+    support: {
+      setup: "Onsite professional setup.",
+      training: "Dedicated training program.",
+      maintenance: "Annual maintenance contract.",
+      consultation: "Priority consultation.",
+    },
   },
 ];
 
 interface ProductPageProps {
-  params: { id: string | string[] };
+  params: Promise<{ id: string | string[] }>;
 }
 
 function renderStars(rating: number) {
@@ -283,7 +382,7 @@ function renderStars(rating: number) {
 }
 
 export default function ProductPage({ params }: ProductPageProps) {
-  const { id } = params;
+  const { id } = use(params);
   const productId = Array.isArray(id) ? id[0] : id;
   const product = products.find((p) => p.id === productId);
 
@@ -791,7 +890,7 @@ export default function ProductPage({ params }: ProductPageProps) {
               </div>
               <div className="bg-white/60 backdrop-blur-sm rounded-xl p-6 border border-purple-200/50 shadow-md">
                 <div className="flex items-center gap-3 mb-4">
-                  <Lightbulb className="h-5 w-5 text-purple-600" />
+                  <Lightbulb className="h-5 w-5 text-emerald-200" />
                   <h3 className="font-semibold text-purple-700">
                     Training Program
                   </h3>
@@ -850,14 +949,14 @@ export default function ProductPage({ params }: ProductPageProps) {
               <p className="font-bold text-blue-600">support@bhooyam.com</p>
             </div>
             <div className="bg-gradient-to-br from-purple-50/80 to-pink-50/80 backdrop-blur-sm rounded-xl p-6 border border-purple-200/50 shadow-md">
-              <MapPin className="h-8 w-8 text-purple-600 mb-3" />
+              <MapPin className="h-8 w-8 text-emerald-200 mb-3" />
               <h3 className="font-semibold text-purple-700 mb-2">
                 Visit Showroom
               </h3>
               <p className="text-sm text-gray-600 mb-2">
                 See our systems in action
               </p>
-              <p className="font-bold text-purple-600">Schedule Tour</p>
+              <p className="font-bold text-emerald-200">Schedule Tour</p>
             </div>
           </div>
         </div>
@@ -975,7 +1074,9 @@ export default function ProductPage({ params }: ProductPageProps) {
                           <div className="flex items-center justify-between">
                             <div className="flex items-center gap-3">
                               <div className="p-2 bg-gradient-to-br from-blue-100 to-emerald-100 rounded-lg group-hover:shadow-md transition-shadow">
-                                <spec.icon className="h-5 w-5 text-blue-600" />
+                                {spec.icon && (
+                                  <spec.icon className="h-5 w-5 text-blue-600" />
+                                )}
                               </div>
                               <span className="font-semibold text-gray-900">
                                 {spec.label}
@@ -1159,7 +1260,7 @@ export default function ProductPage({ params }: ProductPageProps) {
                           <th className="text-center p-4 font-semibold text-blue-600">
                             Bhooyam Home
                           </th>
-                          <th className="text-center p-4 font-semibold text-purple-600">
+                          <th className="text-center p-4 font-semibold text-emerald-200">
                             Bhooyam Mini
                           </th>
                         </tr>
@@ -1222,7 +1323,7 @@ export default function ProductPage({ params }: ProductPageProps) {
                             <td className="p-4 text-center text-blue-600 font-medium">
                               {row.home}
                             </td>
-                            <td className="p-4 text-center text-purple-600 font-medium">
+                            <td className="p-4 text-center text-emerald-200 font-medium">
                               {row.mini}
                             </td>
                           </tr>
@@ -1258,7 +1359,7 @@ export default function ProductPage({ params }: ProductPageProps) {
                       <h4 className="font-semibold text-purple-700">
                         Bhooyam Mini
                       </h4>
-                      <p className="text-sm text-purple-600">For Beginners</p>
+                      <p className="text-sm text-emerald-200">For Beginners</p>
                     </Link>
                   </div>
                 </div>

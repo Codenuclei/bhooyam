@@ -410,7 +410,10 @@ export const EnhancedProductCard = ({
       />
 
       {/* Content Container */}
-      <div className="relative z-10 p-6 h-full">
+      <div
+        className="relative z-10 p-6 h-full"
+        onClick={() => (window.location.href = `/products/${product.id}`)}
+      >
         {/* Product Header with Badges */}
         <div className="relative mb-4">
           {/* Product Image */}

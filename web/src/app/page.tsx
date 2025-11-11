@@ -2,9 +2,9 @@ import Faq from "@/components/faq";
 import Footer from "@/components/footer";
 import Hero from "@/components/hero";
 import Landing from "@/components/landing";
-import Navbar from "@/components/navbar";
-import Pricing from "@/components/pricing";
-import Testimonials from "@/components/testimonials";
+// import Navbar from "@/components/navbar";
+// import Pricing from "@/components/pricing";
+// import Testimonials from "@/components/testimonials";
 
 export default function Page() {
   return (
@@ -13,9 +13,9 @@ export default function Page() {
       <Hero />
       {/* <Pricing /> */}
 
-      <div className="w-full mx-auto bg-[url('/bg.png')]">
+      {/* <div className="w-full mx-auto bg-[url('/bg.png')]">
         <Testimonials />
-      </div>
+      </div> */}
 
       {/* Features */}
       <section className="font-display bg-gray-50  min-h-screen flex items-center justify-center p-4 sm:p-6 lg:p-8 relative overflow-hidden">
@@ -35,36 +35,30 @@ export default function Page() {
             {/* Card 1 */}
             <div className="glassmorphism rounded-xl p-8 text-center md:text-left transition-transform duration-300 hover:scale-105">
               <h3 className="text-2xl sm:text-3xl font-bold text-slate-800 mb-4">
-                Intuitive Design
+               Smart Monitoring
               </h3>
               <p className="text-slate-600  leading-relaxed">
-                Experience a seamless and intuitive user interface designed for
-                efficiency. Our platform is crafted to be user-friendly,
-                allowing you to focus on what matters most.
+                Experience a seamless interface that keeps you connected to your plants in real time. Bhooyam’s dashboard displays temperature, humidity, pH, and nutrient data in an intuitive, easy-to-understand format — so you can focus on growing, not guessing.
               </p>
             </div>
 
             {/* Card 2 */}
             <div className="glassmorphism rounded-xl p-8 text-center md:text-left transition-transform duration-300 hover:scale-105">
               <h3 className="text-2xl sm:text-3xl font-bold text-slate-800  mb-4">
-                Powerful Analytics
+                  AI-Powered Insights
               </h3>
               <p className="text-slate-600 leading-relaxed">
-                Gain valuable insights with our advanced analytics tools. Track
-                performance, understand trends, and make data-driven decisions
-                to propel your business forward.
+               Unlock intelligent analytics driven by AI and sensor fusion. From detecting early signs of nutrient deficiency to optimizing water and light usage, Bhooyam helps you make data-driven decisions that boost plant health and yield.
               </p>
             </div>
 
             {/* Card 3 */}
             <div className="glassmorphism rounded-xl p-8 text-center md:text-left transition-transform duration-300 hover:scale-105">
               <h3 className="text-2xl sm:text-3xl font-bold text-slate-800  mb-4">
-                Seamless Integration
+             Effortless Automation
               </h3>
               <p className="text-slate-600  leading-relaxed">
-                Effortlessly connect with your favorite tools and services. Our
-                platform supports a wide range of integrations to streamline
-                your workflow and enhance productivity.
+            Integrate all essential hydroponic functions — from water circulation to nutrient dosing — into one connected ecosystem. Bhooyam’s automation system streamlines your growing process, reducing manual effort while ensuring consistent, high-quality growth.
               </p>
             </div>
           </div>
@@ -80,21 +74,17 @@ export default function Page() {
       </div>
 
       {/* Call to Action */}
-      <section className="w-full bg-[url('/landscape.png')] bg-no-repeat bg-center bg-cover flex justify-center items-center  mx-auto px-6 py-20">
-        {/* Card Styling: Rounded corners, soft background, and a subtle shadow for elevation */}
+      {/* <section className="w-full bg-[url('/landscape.png')] bg-no-repeat bg-center bg-cover flex justify-center items-center  mx-auto px-6 py-20">
         <div className="bg-gradient-to-b max-w-3xl from-stone-300/45 to-neutral-50  backdrop-blur-sm rounded-3xl p-12 text-center shadow-2xl shadow-gray-200/60">
-          {/* Heading */}
           <h3 className="text-4xl font-bold mb-4 text-gray-900 tracking-tight">
             Ready to Elevate Your Business?
           </h3>
 
-          {/* Subtext */}
           <p className="mb-10 text-xl text-gray-600 max-w-xl mx-auto">
             Join thousands of professionals and discover our powerful tools. Get
             started in minutes.
           </p>
 
-          {/* Sophisticated Button: Gradient, colored shadow, and smooth hover transition */}
           <a
             href="/free-trial-signup"
             className="
@@ -106,17 +96,10 @@ export default function Page() {
         py-2
         rounded-full 
         text-white 
-        
-        /* Gradient Background */
         bg-gradient-to-r from-emerald-500 to-teal-500 
-        
-        /* Box Shadow */
         shadow-xl shadow-emerald-500/50 
-        
-        /* Hover Effects */
         hover:shadow-2xl hover:shadow-emerald-500/70 
         hover:scale-[1.01] 
-        
         transition 
         duration-300 
         ease-in-out
@@ -125,7 +108,7 @@ export default function Page() {
             Start Your Free Trial
           </a>
         </div>
-      </section>
+      </section> */}
 
       {/* Footer */}
       <Footer />
