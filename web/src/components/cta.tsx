@@ -12,22 +12,22 @@ import {
 // Stats and Features data
 const stats = [
   {
+    number: "50+",
+    label: "Smart Hydroponic Units",
+    highlight: "Deployed & Tested",
     icon: UsersIcon,
-    number: "7,800+",
-    label: "Active Creators",
-    highlight: "Global Community",
   },
   {
+    number: "12+",
+    label: "Active R&D Collaborations",
+    highlight: "Driving Agri-Innovation",
     icon: FireIcon,
-    number: "5M+",
-    label: "Ideas Ignited",
-    highlight: "Real Impact",
   },
   {
+    number: "95%",
+    label: "Water Efficiency",
+    highlight: "Through AI-Controlled Systems",
     icon: CheckCircleIcon,
-    number: "99.7%",
-    label: "Satisfaction",
-    highlight: "Top Rated",
   },
 ];
 
@@ -61,18 +61,18 @@ export default function ModernSection() {
           <div className="inline-flex items-center gap-3 mb-8 bg-white/40 backdrop-blur-lg border border-white/30 rounded-full px-8 py-3 shadow-inner">
             <span className="w-3 h-3 bg-white rounded-full animate-pulse"></span>
             <span className="text-sm font-semibold text-white tracking-wide uppercase">
-              Welcome Aboard
+              Welcome to Bhooyam
             </span>
           </div>
 
           <h2 className="text-5xl lg:text-6xl font-extrabold text-white mb-8 leading-tight drop-shadow-[0_0_25px_rgba(0,0,0,0.3)]">
-            Unlock Your <span className="text-white">Best Work</span> Today
+            Redefining <span className="text-white">Farming</span> with AI & Innovation
           </h2>
 
           <p className="text-lg text-white max-w-2xl mx-auto mb-12 font-light opacity-95">
-            Join an ever-growing community of makers and thinkers. Bring ideas
-            to life in minutes—no friction, full control, and beautiful results
-            every time.
+            Discover the future of sustainable farming with Bhooyam’s AI-powered
+            hydroponic systems. Monitor, automate, and optimize every part of your
+            growth journey — from nutrients to air quality — all in one intelligent platform.
           </p>
         </div>
 
@@ -142,17 +142,18 @@ export default function ModernSection() {
           <div className="relative z-10">
             <SparklesIcon className="w-14 h-14 text-white mb-4" />
             <h3 className="text-2xl font-bold text-white mb-2 tracking-tight">
-              Ready to Make Magic?
+              Ready to Grow Smarter?
             </h3>
             <p className="text-white/90 text-center mb-6">
-              Start your journey with exclusive features, beautiful tools, and a
-              vibrant community cheering you on.
+              Start your journey with Bhooyam — the AI-powered hydroponic system
+              designed to simplify farming, reduce waste, and deliver higher yield
+              with precision and care.
             </p>
             <button className="w-full py-3 rounded-xl bg-white text-gray-900 font-bold shadow-lg hover:scale-105 active:scale-95 transition">
-              Get Started Free
+              Get Started with Bhooyam
             </button>
             <span className="text-xs text-white/80 mt-2 block">
-              No card required • Cancel anytime
+              Smart. Sustainable. Scalable.
             </span>
           </div>
         </div>
@@ -160,11 +161,11 @@ export default function ModernSection() {
         {/* Bottom Message */}
         <div className="text-center mt-14">
           <p className="text-white text-lg font-medium">
-            <span className="font-bold text-white">Promo:</span> Unlock extra
-            credits on your first project!
+            <span className="font-bold text-white">Exclusive Offer:</span> Get
+            early access to Bhooyam’s AI farming dashboard!
           </p>
           <p className="text-white/90 text-sm mt-2">
-            Real-time support • Powerful integrations • Forever free plan
+            Automated nutrient control • AI plant health monitoring • Eco-efficient design
           </p>
         </div>
       </div>
