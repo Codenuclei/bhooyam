@@ -8,9 +8,9 @@ export default function Hero() {
   );
 
   return (
-    <div className="relative">
+    <div className="relative bg-[url('/bg.png')] bg-no-repeat bg-center bg-cover w-full">
       {/* Fixed light background (white theme only) */}
-      <div
+      {/* <div
         aria-hidden
         className="absolute inset-0 -z-10"
         style={{
@@ -18,23 +18,22 @@ export default function Hero() {
           backgroundSize: "cover, 220px 220px",
           backgroundRepeat: "no-repeat, repeat",
         }}
-      />
+      /> */}
 
       <div className="flex flex-col md:flex-row w-full min-h-screen items-center justify-evenly gap-8 px-6 py-12">
         <div className="flex-1 flex justify-center items-center">
-          <div className="relative w-full max-w-md aspect-square overflow-hidden rounded-2xl">
-            <Image
-              src={"/hero.jpg"}
-              width={520}
-              height={520}
-              alt="Bhooyam product"
-              className="w-full h-full object-cover"
-            />
-            <div
-              aria-hidden
-              className="absolute inset-0 pointer-events-none bg-gradient-to-br from-emerald-50/70 via-lime-100/30 to-cyan-100/60 mix-blend-multiply"
-            />
-          </div>
+            <div className="relative w-full max-w-md aspect-square overflow-hidden rounded-2xl">
+              <Image
+                src={"/side.png"}
+                style={{
+                  filter: "drop-shadow(0 1px 2px rgba(0, 0, 0, 0.05)) brightness(1.1)"
+                }}
+                width={520}
+                height={520}
+                alt="Bhooyam product"
+                className="w-max-md h-full object-contain"
+              />
+            </div>
         </div>
 
         <div className="flex-1 flex font-sans flex-col  gap-6 justify-center items-start">
@@ -82,7 +81,7 @@ export default function Hero() {
             <Link
               href="#waitlist"
               aria-label="Join Waitlist"
-              className="px-6 py-2 rounded-full text-neutral-800/70 bg-gradient-to-br from-yellow-200/90 via-slate-50/60 to-green-100/90 border border-slate-200/40 backdrop-blur-sm shadow-md ring-1 ring-red-200/30 transition-transform duration-150 hover:scale-[1.02] hover:shadow-[0_12px_40px_rgba(239,68,68,0.18)] focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-red-300/40 flex items-center justify-center"
+              className="px-6 py-2 rounded-full text-neutral-800/70 bg-gradient-to-br from-yellow-400/30 via-slate-50 to-green-300/40 border border-slate-200/40 backdrop-blur-sm shadow-md ring-1 ring-red-200/30 transition-transform duration-150 hover:scale-[1.02] hover:shadow-[0_12px_40px_rgba(239,68,68,0.18)] focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-red-300/40 flex items-center justify-center"
             >
               Contact Us
             </Link>

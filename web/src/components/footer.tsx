@@ -2,113 +2,139 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-50 border-t border-gray-200 py-10">
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900">Bhooyam</h3>
-            <p className="mt-2 text-sm text-gray-600">
-              Empowering sustainable farming with AI-driven hydroponics.
+    <section className="bg-white  border-t border-gray-200  py-12 px-6">
+      <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 text-center md:text-left">
+        {/* Brand Section */}
+        <div>
+            <div className="flex items-center justify-center md:justify-start mb-4">
+            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center text-white font-bold text-lg">
+              B
+            </div>
+            <span className="ml-2 text-xl font-semibold text-gray-800">
+              Bhooyam Hydroponics
+            </span>
+            </div>
+            <p className="text-gray-600 text-sm mb-4 leading-relaxed">
+            Innovative hydroponic solutions for sustainable agriculture and fresh produce cultivation.
             </p>
-          </div>
-
-          <div>
-            <h4 className="text-md font-semibold text-gray-900">Quick Links</h4>
-            <ul className="mt-4 space-y-2">
-              <li>
-                <Link
-                  href="/about"
-                  className="text-gray-600 hover:text-gray-900"
-                >
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/products"
-                  className="text-gray-600 hover:text-gray-900"
-                >
-                  Products
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/contact"
-                  className="text-gray-600 hover:text-gray-900"
-                >
-                  Contact
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/privacy-policy"
-                  className="text-gray-600 hover:text-gray-900"
-                >
-                  Privacy Policy
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/terms-and-privacy"
-                  className="text-gray-600 hover:text-gray-900"
-                >
-                  Terms & Conditions
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="text-md font-semibold text-gray-900">Follow Us</h4>
-            <ul className="mt-4 space-y-2">
-              <li>
-                <a
-                  href="https://twitter.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-600 hover:text-gray-900"
-                >
-                  Twitter
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://facebook.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-600 hover:text-gray-900"
-                >
-                  Facebook
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://instagram.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-600 hover:text-gray-900"
-                >
-                  Instagram
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://linkedin.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-600 hover:text-gray-900"
-                >
-                  LinkedIn
-                </a>
-              </li>
-            </ul>
+          <div className="flex justify-center md:justify-start space-x-4 text-gray-500">
+            <a
+              href="#"
+              className="hover:text-sky-600 transition-colors duration-200"
+            >
+              <i className="fab fa-twitter text-xl"></i>
+            </a>
+            <a
+              href="#"
+              className="hover:text-sky-600 transition-colors duration-200"
+            >
+              <i className="fab fa-facebook-f text-xl"></i>
+            </a>
+            <a
+              href="#"
+              className="hover:text-sky-600 transition-colors duration-200"
+            >
+              <i className="fab fa-instagram text-xl"></i>
+            </a>
+            <a
+              href="#"
+              className="hover:text-sky-600 transition-colors duration-200"
+            >
+              <i className="fab fa-github text-xl"></i>
+            </a>
           </div>
         </div>
 
-        <div className="mt-10 text-center text-sm text-gray-500">
-          <p>&copy; {new Date().getFullYear()} Bhooyam. All rights reserved.</p>
+        {/* Company Section */}
+        <div>
+          <h4 className="text-sm font-semibold text-gray-400 tracking-wider uppercase mb-4">
+            Company
+          </h4>
+          <ul className="space-y-2 text-gray-700 ">
+            <li>
+              <a href="#" className="hover:text-sky-600">
+                About
+              </a>
+            </li>
+            <li>
+              <a href="#" className="hover:text-sky-600">
+                Features
+              </a>
+            </li>
+            <li>
+              <a href="#" className="hover:text-sky-600">
+                Works
+              </a>
+            </li>
+            <li>
+              <a href="#" className="hover:text-sky-600">
+                Career
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        {/* Help Section */}
+        <div>
+          <h4 className="text-sm font-semibold text-gray-400 tracking-wider uppercase mb-4">
+            Help
+          </h4>
+          <ul className="space-y-2 text-gray-700 ">
+            <li>
+              <a href="#" className="hover:text-sky-600">
+                Customer Support
+              </a>
+            </li>
+            <li>
+              <a href="#" className="hover:text-sky-600">
+                Delivery Details
+              </a>
+            </li>
+            <li>
+              <a href="#" className="hover:text-sky-600">
+                Terms & Conditions
+              </a>
+            </li>
+            <li>
+              <a href="#" className="hover:text-sky-600">
+                Privacy Policy
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        {/* Popular Posts */}
+        <div>
+          <h4 className="text-sm font-semibold text-gray-400 tracking-wider uppercase mb-4">
+            Recent Updates
+          </h4>
+          <ul className="space-y-4">
+            <li>
+              <a
+          href="#"
+          className="font-semibold text-gray-800  hover:text-sky-600 block"
+              >
+          New Hydroponic System Launch for Home Growers
+              </a>
+              <span className="text-sm text-gray-500">March 15, 2025</span>
+            </li>
+            <li>
+              <a
+          href="#"
+          className="font-semibold text-gray-800  hover:text-sky-600 block"
+              >
+          Sustainable Agriculture: Our Impact on Local Communities
+              </a>
+              <span className="text-sm text-gray-500">February 28, 2025</span>
+            </li>
+          </ul>
         </div>
       </div>
-    </footer>
+
+      {/* Footer Bottom Line */}
+      <div className="border-t border-gray-200  mt-12 pt-6 text-center text-gray-500 text-sm">
+        © 2025 ClarityUI. All rights reserved.
+      </div>
+    </section>
   );
 }

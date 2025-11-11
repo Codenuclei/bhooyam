@@ -1,521 +1,478 @@
+"use client";
+
+import React, { useState } from "react";
 import Navbar from "@/components/navbar";
-// import Footer from "@/components/footer";
-import Image from "next/image";
-import Link from "next/link";
-import { 
-  Droplet, 
-  Sprout, 
-  CircuitBoard, 
-  Zap, 
-  Twitter, 
-  Linkedin,
-  ThermometerSun,
-  Cloudy,
-  Activity,
-  Wifi,
-  TrendingUp,
-  Target,
-  Sparkles
-} from "lucide-react";
+import Footer from "@/components/footer";
+import { EnhancedProductCard } from "@/components/enhanced-product-card";
+import {
+  TruckIcon,
+  ShieldCheckIcon,
+  CheckBadgeIcon,
+  ChartBarIcon,
+  DeviceTabletIcon,
+} from "@heroicons/react/24/outline";
+import { LeafIcon } from "lucide-react";
+import ModernSection from "@/components/cta";
+// Add custom styles for animations and mint colors
+const customStyles = `
+  @keyframes gradient {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient 3s ease infinite;
+  }
+  .bg-grid-pattern {
+    background-image: radial-gradient(circle at 1px 1px, rgba(0,0,0,0.1) 1px, transparent 0);
+    background-size: 20px 20px;
+  }
+  
+  /* Custom Mint Color Definitions */
+  .bg-mint-50 { background-color: #f0fdf4; }
+  .bg-mint-100 { background-color: #dcfce7; }
+  .bg-mint-200 { background-color: #bbf7d0; }
+  .bg-mint-300 { background-color: #86efac; }
+  .bg-mint-400 { background-color: #4ade80; }
+  .bg-mint-500 { background-color: #22c55e; }
+  .bg-mint-600 { background-color: #16a34a; }
+  .bg-mint-700 { background-color: #15803d; }
+  
+  .text-mint-400 { color: #4ade80; }
+  .text-mint-500 { color: #22c55e; }
+  .text-mint-600 { color: #16a34a; }
+  .text-mint-700 { color: #15803d; }
+  
+  .border-mint-200 { border-color: #bbf7d0; }
+  .border-mint-300 { border-color: #86efac; }
+  .border-mint-400 { border-color: #4ade80; }
+  
+  .from-mint-50 { --tw-gradient-from: #f0fdf4; }
+  .from-mint-400 { --tw-gradient-from: #4ade80; }
+  .from-mint-500 { --tw-gradient-from: #22c55e; }
+  .to-mint-50 { --tw-gradient-to: #f0fdf4; }
+  .to-green-400 { --tw-gradient-to: #4ade80; }
+  .to-green-400 { --tw-gradient-to: #4ade80; }
+  .hover\\:bg-mint-50:hover { background-color: #f0fdf4; }
+`;
 
-const teamMembers = [
+if (typeof document !== "undefined") {
+  const styleSheet = document.createElement("style");
+  styleSheet.textContent = customStyles;
+  document.head.appendChild(styleSheet);
+}
+// Enhanced product data with complete interface
+const products = [
   {
-    name: "Dr. Meera Rao",
-    role: "Founder & CEO",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop",
-    bio: "Visionary leader with 15+ years in agritech, passionate about sustainable innovation.",
-    social: {
-      twitter: "https://twitter.com/meera",
-      linkedin: "https://linkedin.com/in/meera",
+    id: "bhooyam-pro-system",
+    name: "Bhooyam Pro System",
+    description:
+      "Professional hydroponic system with AI-powered optimization for maximum yield and efficiency. Perfect for commercial growing operations.",
+    price: "$1,299",
+    originalPrice: "$1,599",
+    images: [
+      "/images/bhooyam-pro.jpg",
+      "/images/bhooyam-pro-side.jpg",
+      "/images/bhooyam-pro-detail.jpg",
+    ],
+    rating: 4.9,
+    reviews: 247,
+    features: [
+      "300 plant capacity",
+      "AI optimization",
+      "Mobile app control",
+      "Modular design",
+    ],
+    badges: ["Best Seller", "AI Powered"],
+    inStock: true,
+    isNew: false,
+    isBestseller: true,
+    metrics: {
+      efficiency: 95,
+      yield: 85,
+      waterSaving: 90,
+      energyEfficiency: 88,
+    },
+    etiquetteFeatures: {
+      warranty: "5-year comprehensive",
+      shipping: "Free 2-day delivery",
+      certification: "ISO 9001 certified",
+      support: "24/7 expert support",
     },
   },
   {
-    name: "Ravi Kumar",
-    role: "CTO",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop",
-    bio: "AI and IoT expert, architect of Bhooyam's autonomous hydroponic system.",
-    social: {
-      twitter: "https://twitter.com/ravi",
-      linkedin: "https://linkedin.com/in/ravi",
+    id: "bhooyam-home-garden",
+    name: "Bhooyam Home Garden",
+    description:
+      "Compact home hydroponic system designed for families. Grow fresh vegetables and herbs year-round with minimal maintenance.",
+    price: "$499",
+    originalPrice: "$599",
+    images: [
+      "/images/home-garden.jpg",
+      "/images/home-garden-kitchen.jpg",
+      "/images/home-garden-plants.jpg",
+    ],
+    rating: 4.7,
+    reviews: 183,
+    features: [
+      "36 plant capacity",
+      "Quiet operation",
+      "Energy efficient",
+      "Easy setup",
+    ],
+    badges: ["Home Use", "Quiet"],
+    inStock: true,
+    isNew: true,
+    isBestseller: false,
+    metrics: {
+      efficiency: 82,
+      yield: 75,
+      waterSaving: 85,
+      energyEfficiency: 90,
+    },
+    etiquetteFeatures: {
+      warranty: "3-year warranty",
+      shipping: "Free standard delivery",
+      certification: "Energy Star rated",
+      support: "Phone & chat support",
     },
   },
   {
-    name: "Anjali Sharma",
-    role: "Head of Operations",
-    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop",
-    bio: "Operations strategist ensuring seamless deployments and customer success.",
-    social: {
-      twitter: "https://twitter.com/anjali",
-      linkedin: "https://linkedin.com/in/anjali",
+    id: "bhooyam-farm-unit",
+    name: "Bhooyam Farm Unit",
+    description:
+      "Industrial-grade hydroponic system for large-scale farming operations. Expandable design with commercial-grade components.",
+    price: "$2,499",
+    originalPrice: "$2,899",
+    images: [
+      "/images/farm-unit.jpg",
+      "/images/farm-unit-scale.jpg",
+      "/images/farm-unit-harvest.jpg",
+    ],
+    rating: 4.8,
+    reviews: 95,
+    features: [
+      "600 plant capacity",
+      "Commercial grade",
+      "Expandable",
+      "24/7 support",
+    ],
+    badges: ["Commercial", "Expandable"],
+    inStock: true,
+    isNew: false,
+    isBestseller: false,
+    metrics: {
+      efficiency: 92,
+      yield: 88,
+      waterSaving: 87,
+      energyEfficiency: 85,
+    },
+    etiquetteFeatures: {
+      warranty: "7-year commercial warranty",
+      shipping: "White-glove installation",
+      certification: "Commercial grade certified",
+      support: "Dedicated account manager",
     },
   },
 ];
 
-const keyFeatures = [
-  { 
-    icon: Droplet, 
-    text: "90% water reduction",
-    stat: "90%",
-    color: "from-blue-400 to-cyan-500" 
-  },
-  { 
-    icon: Sprout, 
-    text: "Zero pesticides used",
-    stat: "0%",
-    color: "from-emerald-400 to-green-500" 
-  },
-  { 
-    icon: CircuitBoard, 
-    text: "AI-powered control",
-    stat: "24/7",
-    color: "from-purple-400 to-indigo-500" 
-  },
-  { 
-    icon: Zap, 
-    text: "5-minute setup",
-    stat: "5min",
-    color: "from-amber-400 to-orange-500" 
+const stats = [
+  { icon: ChartBarIcon, value: "+500%", label: "Average yield increase" },
+  { icon: LeafIcon, value: "-90%", label: "Water usage vs soil farms" },
+  {
+    icon: DeviceTabletIcon,
+    value: "+80%",
+    label: "Lighting efficiency with LEDs",
   },
 ];
 
-const techSpecs = [
-  {
-    icon: Activity,
-    title: "pH Monitoring",
-    description: "Real-time pH balancing with automatic solution injection"
-  },
-  {
-    icon: Droplet,
-    title: "EC/TDS Control",
-    description: "Precise nutrient dosing maintaining optimal levels"
-  },
-  {
-    icon: ThermometerSun,
-    title: "Climate Control",
-    description: "Automated temperature and humidity management"
-  },
-  {
-    icon: Wifi,
-    title: "IoT Dashboard",
-    description: "Remote monitoring and control via smartphone"
-  },
-];
+export default function Home() {
+  const [activeCard, setActiveCard] = useState<string | null>(null);
 
-export default function AboutPage() {
   return (
-    <div className="min-h-screen  bg-[url('/bg.png')] bg-no-repeat bg-center bg-cover">
-      
-<div className="flex w-full  justify-center items-center"><Navbar /></div>
-      {/* Hero Section */}
-      <section className="relative overflow-hidden py-16 md:py-20">
-        {/* Background Image */}
-        <div className="absolute inset-0 top-0">
-          <Image
-            src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?w=1920&h=1080&fit=crop"
-            alt="Hydroponic farming"
-            fill
-            className="object-cover opacity-10"
-            priority
-          />
-        </div>
+    <>
+      {/* Enhanced Navigation */}
+      <header className="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 shadow-sm">
+        <Navbar />
+      </header>
 
-        {/* Background decoration */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-emerald-200/40 blur-3xl" />
-          <div className="absolute -bottom-40 -left-40 w-96 h-96 rounded-full bg-cyan-200/30 blur-3xl" />
-        </div>
+      <main className="pt-16">
+        {/* 1. Refined Hero Section with Perfect Mint Glassmorphism */}
+        <section className="relative bg-gradient-to-br from-mint-50 via-green-50 to-emerald-50 py-24 lg:py-32 overflow-hidden">
+          <div className="absolute inset-0 bg-grid-pattern opacity-3"></div>
+          {/* Soft Animated Background Elements */}
+          <div className="absolute top-20 left-10 w-32 h-32 bg-mint-100/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-20 right-10 w-40 h-40 bg-green-100/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
 
-        <div className="relative max-w-5xl mx-auto px-6 text-center">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-emerald-200 shadow-lg shadow-emerald-100/50 mb-6">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="text-xs font-bold text-emerald-700">
-              Intelligent Hydroponics • Automated Future
-            </span>
-          </div>
-
-          {/* Headline */}
-        {/* Small headline (hoda chota) */}
-<h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold font-sans text-gray-900 tracking-tight mb-3">
-  Where Nature Meets
-  <br />
-  <span className="bg-gradient-to-r from-emerald-500 via-cyan-400 to-emerald-600 bg-clip-text text-transparent font-bold">
-    Artificial Intelligence
-  </span>
-</h1>
-
-
-          {/* Subheadline */}
-          <p className="text-lg md:text-xl text-gray-600 leading-relaxed mb-8 max-w-3xl mx-auto">
-            Bhooyam's autonomous hydroponic systems combine cutting-edge IoT sensors, 
-            AI-powered monitoring, and precision automation to revolutionize sustainable agriculture.
-          </p>
-
-          {/* CTAs */}
-          <div className="flex flex-wrap gap-3 justify-center mb-10">
-            <Link
-              href="/products"
-              className="group relative overflow-hidden px-6 py-2.5 rounded-full bg-gradient-to-r from-white via-gray-200 to-emerald-200 hover:from-emerald-100 hover:via-emerald-200 hover:to-emerald-300 text-gray-700 font-semibold shadow-[0_4px_14px_rgba(154,229,182,0.5)] hover:shadow-[0_6px_20px_rgba(154,229,182,0.6)] transform hover:scale-105 transition-all duration-300"
-            >
-              <span className="relative z-10">Explore Products</span>
-            </Link>
-            <Link
-              href="/contact"
-              className="px-6 py-2.5 rounded-full border-2 border-gray-300 text-gray-700 font-semibold hover:border-emerald-400 hover:bg-emerald-50 backdrop-blur-sm bg-white/80 transition-all duration-300"
-            >
-              Contact Us
-            </Link>
-          </div>
-
-          {/* Quick Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-3xl mx-auto">
-            {keyFeatures.map((feature, idx) => (
-              <div
-                key={idx}
-                className="p-3 rounded-2xl bg-white/80 backdrop-blur-md border border-emerald-100/50 shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300"
-              >
-                <div className={`w-10 h-10 mx-auto mb-2 rounded-xl bg-gradient-to-br ${feature.color} flex items-center justify-center shadow-lg`}>
-                  <feature.icon className="w-5 h-5 text-white" />
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div className="text-center lg:text-left lg:flex lg:items-center lg:justify-between">
+              <div className="lg:w-1/2">
+                <div className="inline-flex items-center gap-2 bg-white/70 backdrop-blur-md border border-mint-200/40 rounded-full px-4 py-2 mb-6 shadow-sm">
+                  <div className="w-2 h-2 bg-mint-400 rounded-full animate-pulse"></div>
+                  <span className="text-sm font-semibold text-mint-700">
+                    Next-Gen Hydroponic Technology
+                  </span>
                 </div>
-                <div className="text-xl font-bold text-gray-900 mb-0.5">{feature.stat}</div>
-                <p className="text-xs text-gray-600">{feature.text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* Our Story Section */}
-      <section className="py-16 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Image */}
-            <div className="order-2 lg:order-1 relative group">
-              <div className="absolute -inset-4 bg-gradient-to-br from-emerald-300/30 to-cyan-300/30 rounded-3xl blur-3xl group-hover:blur-2xl transition-all duration-500" />
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-emerald-200/50 border-4 border-white">
-                <Image
-                  src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=800&h=600&fit=crop"
-                  alt="Hydroponic system with fresh greens"
-                  width={800}
-                  height={600}
-                  className="w-full h-auto"
-                />
-                {/* Overlay badge */}
-                <div className="absolute bottom-4 left-4 right-4 p-3 rounded-2xl bg-white/95 backdrop-blur-md border border-emerald-200 shadow-xl">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-400 to-emerald-500 flex items-center justify-center flex-shrink-0">
-                      <TrendingUp className="w-5 h-5 text-white" />
-                    </div>
-                    <div>
-                      <div className="text-xs font-semibold text-gray-600">Growth Rate</div>
-                      <div className="text-lg font-bold text-emerald-600">25-30% Faster</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Content */}
-            <div className="order-1 lg:order-2">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-100 border border-emerald-200 mb-5 shadow-sm">
-                <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
-                <span className="text-xs font-semibold text-emerald-700">Our Story</span>
-              </div>
-
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight">
-                From Question to Revolution
-              </h2>
-
-              <p className="text-base text-gray-600 leading-relaxed mb-5">
-                Bhooyam was born from a simple question: <span className="font-semibold text-gray-800">"Why can't growing food be as easy as pressing a button?"</span> Our founders combined expertise in AI, IoT engineering, and agricultural science to create an intelligent system that makes organic farming effortless, sustainable, and scalable.
-              </p>
-
-              <p className="text-base text-gray-600 leading-relaxed mb-6">
-                Inspired by systems like <span className="font-semibold text-emerald-600">Ankuran</span>, we've integrated advanced automation, real-time monitoring, and machine learning to deliver a truly autonomous hydroponic experience.
-              </p>
-
-              {/* Feature Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {keyFeatures.map((item, idx) => (
-                  <div
-                    key={idx}
-                    className="flex items-center gap-3 p-3 rounded-2xl bg-white border border-emerald-100/50 shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300"
-                  >
-                    <div className={`w-9 h-9 rounded-xl bg-gradient-to-br ${item.color} flex items-center justify-center flex-shrink-0 shadow-md`}>
-                      <item.icon className="w-4.5 h-4.5 text-white" />
-                    </div>
-                    <div>
-                      <div className="text-sm font-bold text-gray-900">{item.stat}</div>
-                      <p className="text-xs text-gray-600">{item.text}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Technology Specs Section */}
-      <section className="py-16 px-6 bg-gradient-to-br from-white via-emerald-50/30 to-cyan-50/20">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-emerald-200 mb-5 shadow-sm">
-              <CircuitBoard className="w-3.5 h-3.5 text-emerald-600" />
-              <span className="text-xs font-semibold text-emerald-700">Advanced Technology</span>
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
-              Intelligent Automation at Work
-            </h2>
-            <p className="text-base text-gray-600 max-w-3xl mx-auto">
-              Our systems monitor and control critical parameters 24/7, ensuring optimal growing conditions with zero manual intervention
-            </p>
-          </div>
-
-          {/* Tech Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
-            {techSpecs.map((spec, idx) => (
-              <div
-                key={idx}
-                className="group relative p-5 rounded-3xl bg-white border border-emerald-100/50 shadow-md hover:shadow-xl hover:scale-[1.03] transition-all duration-300"
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-emerald-400/0 via-emerald-400/5 to-emerald-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl" />
-                
-                <div className="relative">
-                  <div className="w-11 h-11 mb-3 rounded-2xl bg-gradient-to-br from-emerald-100 to-emerald-200 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <spec.icon className="w-5.5 h-5.5 text-emerald-600" />
-                  </div>
-                  <h3 className="text-base font-bold text-gray-900 mb-1.5">{spec.title}</h3>
-                  <p className="text-xs text-gray-600 leading-relaxed">{spec.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Hero Image */}
-          <div className="relative rounded-3xl overflow-hidden shadow-2xl">
-            <Image
-              src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&h=600&fit=crop"
-              alt="Advanced hydroponic technology"
-              width={1600}
-              height={600}
-              className="w-full h-auto"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/80 via-emerald-900/40 to-transparent" />
-            <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
-              <div className="max-w-3xl">
-                <h3 className="text-xl md:text-3xl font-bold text-white mb-3">
-                  IoT-Powered Precision Agriculture
-                </h3>
-                <p className="text-sm md:text-base text-emerald-50 leading-relaxed">
-                  Monitor EC/TDS, pH, temperature, humidity, and nutrient levels in real-time through our intelligent dashboard. Automated dosing pumps maintain perfect balance while AI algorithms optimize growth conditions.
+                <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
+                  Grow More with{" "}
+                  <span className="bg-gradient-to-r from-mint-500 via-green-500 to-emerald-500 bg-clip-text text-transparent animate-gradient">
+                    Bhooyam
+                  </span>
+                </h1>
+                <p className="text-xl text-gray-600 max-w-2xl mx-auto lg:mx-0 mb-8 leading-relaxed">
+                  Advanced hydroponic systems with AI optimization helping you
+                  grow fresh produce year-round using 90% less water and zero
+                  pesticides. The future of sustainable agriculture is here.
                 </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Mission & Vision Section */}
-      <section className="py-16 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Content */}
-            <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-100 border border-emerald-200 mb-5 shadow-sm">
-                <Target className="w-3.5 h-3.5 text-emerald-600" />
-                <span className="text-xs font-semibold text-emerald-700">Mission & Vision</span>
-              </div>
-
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight">
-                Democratizing Smart Agriculture
-              </h2>
-
-              <p className="text-base text-gray-600 leading-relaxed mb-4">
-                Our mission is to enable intelligent, resource-efficient agriculture through automation and innovation. We envision a future where anyone can grow healthy, sustainable produce—anywhere, with minimal effort.
-              </p>
-
-              <p className="text-base text-gray-600 leading-relaxed mb-6">
-                By leveraging machine learning, IoT sensors, and automated control systems, we're making professional-grade hydroponics accessible to homes, schools, and businesses worldwide.
-              </p>
-
-              {/* Stats Grid */}
-              <div className="grid grid-cols-2 gap-4">
-                <div className="p-4 rounded-3xl bg-gradient-to-br from-white via-emerald-50 to-emerald-100 border border-emerald-200/50 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                  <Droplet className="w-6 h-6 text-emerald-600 mb-2" />
-                  <div className="text-3xl font-extrabold bg-gradient-to-r from-emerald-500 to-emerald-600 bg-clip-text text-transparent mb-1">
-                    90%
-                  </div>
-                  <div className="text-sm font-semibold text-gray-700 mb-0.5">Water Saved</div>
-                  <p className="text-xs text-gray-600">vs traditional farming</p>
+                {/* Enhanced Stats Preview with Mint Glassmorphism */}
+                <div className="grid grid-cols-3 gap-4 mb-8 lg:max-w-md">
+                  {[
+                    { value: "500%", label: "Yield Increase" },
+                    { value: "90%", label: "Water Saved" },
+                    { value: "24/7", label: "AI Monitoring" },
+                  ].map((stat, idx) => (
+                    <div
+                      key={idx}
+                      className="text-center p-3 bg-white/50 backdrop-blur-md rounded-xl border border-mint-200/30 shadow-sm"
+                    >
+                      <div className="text-2xl font-bold text-mint-600">
+                        {stat.value}
+                      </div>
+                      <div className="text-xs text-gray-600">{stat.label}</div>
+                    </div>
+                  ))}
                 </div>
 
-                <div className="p-4 rounded-3xl bg-gradient-to-br from-white via-cyan-50 to-cyan-100 border border-cyan-200/50 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                  <Activity className="w-6 h-6 text-cyan-600 mb-2" />
-                  <div className="text-3xl font-extrabold bg-gradient-to-r from-cyan-500 to-cyan-600 bg-clip-text text-transparent mb-1">
-                    99%
-                  </div>
-                  <div className="text-sm font-semibold text-gray-700 mb-0.5">Uptime</div>
-                  <p className="text-xs text-gray-600">24/7 operation</p>
-                </div>
-
-                <div className="p-4 rounded-3xl bg-gradient-to-br from-white via-purple-50 to-purple-100 border border-purple-200/50 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                  <TrendingUp className="w-6 h-6 text-purple-600 mb-2" />
-                  <div className="text-3xl font-extrabold bg-gradient-to-r from-purple-500 to-purple-600 bg-clip-text text-transparent mb-1">
-                    30%
-                  </div>
-                  <div className="text-sm font-semibold text-gray-700 mb-0.5">Yield Boost</div>
-                  <p className="text-xs text-gray-600">optimized growth</p>
-                </div>
-
-                <div className="p-4 rounded-3xl bg-gradient-to-br from-white via-amber-50 to-amber-100 border border-amber-200/50 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                  <Sprout className="w-6 h-6 text-amber-600 mb-2" />
-                  <div className="text-3xl font-extrabold bg-gradient-to-r from-amber-500 to-amber-600 bg-clip-text text-transparent mb-1">
-                    0%
-                  </div>
-                  <div className="text-sm font-semibold text-gray-700 mb-0.5">Pesticides</div>
-                  <p className="text-xs text-gray-600">100% organic</p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                  <button className="group inline-flex items-center justify-center bg-gradient-to-r from-mint-400 to-green-400 text-white font-semibold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                    Shop Systems
+                    <svg
+                      className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M17 8l4 4m0 0l-4 4m4-4H3"
+                      />
+                    </svg>
+                  </button>
+                  <button className="inline-flex items-center justify-center border-2 border-mint-400 text-mint-600 font-semibold py-4 px-8 rounded-xl hover:bg-mint-50 transition-all duration-300">
+                    Book Demo
+                  </button>
                 </div>
               </div>
-            </div>
 
-            {/* Image */}
-            <div className="relative group">
-              <div className="absolute -inset-4 bg-gradient-to-br from-cyan-300/30 to-emerald-300/30 rounded-3xl blur-3xl group-hover:blur-2xl transition-all duration-500" />
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-emerald-200/50 border-4 border-white">
-                <Image
-                  src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?w=800&h=600&fit=crop"
-                  alt="Smart agriculture mission"
-                  width={800}
-                  height={600}
-                  className="w-full h-auto"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Team Section */}
-      <section className="py-16 px-6 bg-gradient-to-br from-gray-50 via-white to-emerald-50">
-        <div className="max-w-7xl mx-auto">
-          {/* Section Header */}
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-emerald-200 mb-5 shadow-sm">
-              <span className="text-xs font-semibold text-emerald-700">Our Team</span>
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
-              Meet the Innovators
-            </h2>
-            <p className="text-base text-gray-600 max-w-2xl mx-auto">
-              Passionate experts driving the future of sustainable agriculture through AI and automation
-            </p>
-          </div>
-
-          {/* Team Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {teamMembers.map((member, idx) => (
-              <div
-                key={idx}
-                className="group relative p-6 rounded-3xl border border-emerald-100/50 bg-gradient-to-br from-white via-gray-50 to-emerald-50 shadow-md hover:shadow-2xl hover:shadow-emerald-100/50 backdrop-blur-md transform hover:scale-[1.03] transition-all duration-500"
-              >
-                {/* Animated gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-br from-emerald-400/0 via-emerald-400/5 to-cyan-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl" />
-
-                {/* Content */}
-                <div className="relative z-10 flex flex-col items-center text-center">
-                  {/* Avatar */}
-                  <div className="relative mb-4">
-                    <div className="absolute inset-0 bg-gradient-to-br from-emerald-400/40 to-cyan-400/40 rounded-full blur-2xl group-hover:blur-3xl transition-all duration-500" />
-                    <Image
-                      src={member.image}
-                      alt={member.name}
-                      width={120}
-                      height={120}
-                      className="relative rounded-full shadow-xl group-hover:scale-105 transition-transform duration-500 border-4 border-white"
+              <div className="lg:w-1/2 mt-12 lg:mt-0">
+                <div className="relative">
+                  {/* Main Product Image with Mint Glassmorphism */}
+                  <div className="bg-white/60 backdrop-blur-md rounded-2xl shadow-2xl p-8 transform rotate-2 hover:rotate-0 transition-transform duration-500 border border-mint-200/40">
+                    <img
+                      src="/images/hero-system.jpg"
+                      alt="Bhooyam Hydroponic System"
+                      className="w-full h-64 lg:h-80 object-cover rounded-xl"
                     />
                   </div>
 
-                  {/* Name & Role */}
-                  <h3 className="text-lg font-bold text-gray-900 mb-1">
-                    {member.name}
-                  </h3>
-                  <p className="text-emerald-600 font-semibold mb-3 text-sm">
-                    {member.role}
-                  </p>
+                  {/* Enhanced Floating Cards with Mint Theme */}
+                  <div className="absolute -top-4 -left-4 bg-white/70 backdrop-blur-md rounded-xl shadow-lg p-4 transform -rotate-6 border border-mint-200/50">
+                    <div className="flex items-center gap-2">
+                      <div className="w-3 h-3 bg-mint-400 rounded-full animate-pulse"></div>
+                      <span className="text-sm font-semibold text-gray-800">
+                        Live Growth Monitoring
+                      </span>
+                    </div>
+                  </div>
 
-                  {/* Bio */}
-                  <p className="text-sm text-gray-600 leading-relaxed mb-4">
-                    {member.bio}
-                  </p>
+                  <div className="absolute -bottom-4 -right-4 bg-gradient-to-r from-mint-400 to-green-400 text-white rounded-xl shadow-lg p-4 transform rotate-6">
+                    <div className="text-center">
+                      <div className="text-lg font-bold">90%</div>
+                      <div className="text-xs opacity-90">Water Saved</div>
+                    </div>
+                  </div>
 
-                  {/* Social Links */}
-                  <div className="flex gap-2 mt-auto">
-                    {member.social.twitter && (
-                      <a
-                        href={member.social.twitter}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-9 h-9 rounded-full bg-white border border-gray-200 hover:border-emerald-400 hover:bg-emerald-50 flex items-center justify-center text-gray-600 hover:text-emerald-600 transition-all duration-300 hover:scale-110 shadow-sm hover:shadow-md"
-                        aria-label="Twitter"
-                      >
-                        <Twitter className="w-4 h-4" />
-                      </a>
-                    )}
-                    {member.social.linkedin && (
-                      <a
-                        href={member.social.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-9 h-9 rounded-full bg-white border border-gray-200 hover:border-emerald-400 hover:bg-emerald-50 flex items-center justify-center text-gray-600 hover:text-emerald-600 transition-all duration-300 hover:scale-110 shadow-sm hover:shadow-md"
-                        aria-label="LinkedIn"
-                      >
-                        <Linkedin className="w-4 h-4" />
-                      </a>
-                    )}
+                  <div className="absolute top-1/2 -right-6 bg-emerald-400 text-white rounded-xl shadow-lg p-3 transform rotate-12">
+                    <div className="text-center">
+                      <div className="text-sm font-bold">AI</div>
+                      <div className="text-xs opacity-90">Powered</div>
+                    </div>
                   </div>
                 </div>
               </div>
-            ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* CTA Section */}
-      <section className="py-16 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="p-10 md:p-12 rounded-3xl bg-gradient-to-br from-emerald-500 via-emerald-400 to-cyan-400 shadow-2xl shadow-emerald-300/50 relative overflow-hidden">
-            {/* Decorative elements */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl" />
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-cyan-300/20 rounded-full blur-3xl" />
-            
-            <div className="relative z-10">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                Ready to Grow Smarter?
+        {/* 2. Enhanced Features Section with Mint Glassmorphism */}
+        <section className="py-20 bg-gradient-to-b from-white to-mint-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+                Why Choose Bhooyam?
               </h2>
-              <p className="text-base text-emerald-50 mb-8 max-w-2xl mx-auto">
-                Join the future of sustainable agriculture. Start growing fresh, organic produce with zero effort.
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Designed for modern growers who care about sustainability,
+                efficiency, and the future of agriculture
               </p>
-              <div className="flex flex-wrap gap-3 justify-center">
-                <Link
-                  href="/products"
-                  className="px-6 py-2.5 rounded-full bg-white text-emerald-600 font-bold shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300"
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+              {[
+                {
+                  icon: TruckIcon,
+                  title: "Fast Delivery & Setup",
+                  description:
+                    "Get your system delivered and installed within days, not weeks. Start growing immediately.",
+                  features: [
+                    "2-5 day delivery",
+                    "Professional installation",
+                    "Same-week growing",
+                  ],
+                  gradient: "from-mint-400 to-green-400",
+                },
+                {
+                  icon: ShieldCheckIcon,
+                  title: "Quality Guaranteed",
+                  description:
+                    "Built to last with premium materials and comprehensive support for peace of mind.",
+                  features: [
+                    "5-year warranty",
+                    "24/7 support",
+                    "Quality certified",
+                  ],
+                  gradient: "from-green-400 to-emerald-400",
+                },
+                {
+                  icon: CheckBadgeIcon,
+                  title: "Award-Winning Design",
+                  description:
+                    "Recognized for innovation in sustainable agriculture technology and smart farming.",
+                  features: [
+                    "Eco-tech awards",
+                    "Patent pending",
+                    "Industry leader",
+                  ],
+                  gradient: "from-emerald-400 to-teal-400",
+                },
+              ].map((feature, index) => (
+                <div
+                  key={index}
+                  className="group relative bg-white/60 backdrop-blur-md rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-500 border border-mint-200/40 hover:border-mint-300/50"
                 >
-                  View Our Systems
-                </Link>
-                <Link
-                  href="/contact"
-                  className="px-6 py-2.5 rounded-full border-2 border-white text-white font-bold hover:bg-white hover:text-emerald-600 transition-all duration-300"
-                >
-                  Schedule Demo
-                </Link>
+                  {/* Soft Background Gradient Effect */}
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500 rounded-2xl`}
+                  ></div>
+
+                  <div className="relative z-10">
+                    <div
+                      className={`w-16 h-16 bg-gradient-to-br ${feature.gradient} rounded-2xl flex items-center justify-center group-hover:scale-105 transition-all duration-300 mb-6 shadow-md`}
+                    >
+                      <feature.icon className="w-8 h-8 text-white" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                      {feature.title}
+                    </h3>
+                    <p className="text-gray-600 mb-6 leading-relaxed">
+                      {feature.description}
+                    </p>
+                    <ul className="space-y-3">
+                      {feature.features.map((feat, idx) => (
+                        <li
+                          key={idx}
+                          className="flex items-center text-sm text-gray-700"
+                        >
+                          <div
+                            className={`w-2 h-2 bg-gradient-to-r ${feature.gradient} rounded-full mr-3 shadow-sm`}
+                          ></div>
+                          <span className="font-medium">{feat}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 3. Enhanced Product Showcase with Mint Glassmorphism */}
+        <section className="py-20 bg-gradient-to-br from-mint-50 to-green-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+                Our Revolutionary Systems
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                Discover the perfect hydroponic solution for your space and
+                needs. Each system is engineered for maximum efficiency,
+                sustainability, and yield.
+              </p>
+            </div>
+
+            {/* Enhanced Product Cards Grid */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+              {products.map((product, index) => (
+                <EnhancedProductCard
+                  key={product.id}
+                  product={product}
+                  index={index}
+                  isActive={activeCard === product.id}
+                  onActivate={() =>
+                    setActiveCard(activeCard === product.id ? null : product.id)
+                  }
+                />
+              ))}
+            </div>
+
+            {/* Call to Action for Product Details with Mint Theme */}
+            <div className="text-center mt-16">
+              <div className="inline-flex flex-col sm:flex-row gap-4">
+                <button className="bg-gradient-to-r from-mint-400 to-green-400 text-white font-semibold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                  View All Products
+                </button>
+                <button className="border-2 border-mint-400 text-mint-600 font-semibold py-4 px-8 rounded-xl hover:bg-mint-50 transition-all duration-300">
+                  Compare Systems
+                </button>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* <Footer /> */}
-    </div>
+        {/* 4. Advanced Stats Section with Mint Glassmorphism */}
+        <section className="py-20 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {stats.map((stat, index) => (
+                <div
+                  key={index}
+                  className="text-center p-8 rounded-2xl bg-gradient-to-br from-mint-50 to-green-50 border border-mint-200/40 backdrop-blur-sm"
+                >
+                  <div className="w-20 h-20 bg-gradient-to-br from-mint-400 to-green-400 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-md">
+                    <stat.icon className="w-10 h-10 text-white" />
+                  </div>
+                  <div className="text-5xl font-bold text-gray-900 mb-2">
+                    {stat.value}
+                  </div>
+                  <p className="text-gray-600 text-lg">{stat.label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 5. Premium CTA Section with Refined Color Palette */}
+
+        <ModernSection />
+      </main>
+
+      {/* Footer Component */}
+      <Footer />
+    </>
   );
 }
